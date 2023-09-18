@@ -13,3 +13,4 @@ class User(BaseModel, Base):
     first_name = Column(String(128), nullable=False)
     last_name = Column(String(128), nullable=False)
     places = relationship("Place", delete, backref="user")
+    reviewa = relationship("Review", delete, backref="user")
