@@ -13,20 +13,38 @@ package { 'nginx':
   provider => 'apt',
 }
 
-file { '/data/web_static/shared/':
-  ensure => directory,
+file { '/data':
+  ensure => 'directory',
+  owner  => 'ubuntu',
+  group  => 'ubuntu',
+}
+
+file { '/data/web_static':
+  ensure => 'directory',
+  owner  => 'ubuntu',
+  group  => 'ubuntu',
+}
+
+file { '/data/web_static/releases':
+  ensure => 'directory',
   owner  => 'ubuntu',
   group  => 'ubuntu',
 }
 
 file { '/data/web_static/releases/test/':
-  ensure => directory,
+  ensure => 'directory',
+  owner  => 'ubuntu',
+  group  => 'ubuntu',
+}
+
+file { '/data/web_static/shared/':
+  ensure => 'directory',
   owner  => 'ubuntu',
   group  => 'ubuntu',
 }
 
 file { '/data/web_static/releases/test/index.html':
-  ensure  => present,
+  ensure  => 'present',
   content => 'Hello World!!',
 }
 
@@ -36,7 +54,7 @@ file { '/data/web_static/current':
 }
 
 file { '/etc/nginx/sites-available/default':
-  ensure  => present,
+  ensure  => 'present',
   content => $nginx_conf,
 }
 
