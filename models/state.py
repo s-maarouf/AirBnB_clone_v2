@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 import models
+import shlex
 
 
 class State(BaseModel, Base):
@@ -17,9 +18,15 @@ class State(BaseModel, Base):
     def cities(self):
         """Returns a list of City instances with state_id
         equal to the current State.id."""
-        cities = models.storage.all()
-        city_instances = []
-        for city in cities.values():
-            if city.state_id == self.id:
-                city_instances.append(city)
-        return city_instances
+        var = models.storage.all()
+        lista = []
+        result = []
+        for key in var:
+            city = key.replace('.', ' ')
+            city = shlex.split(city)
+            if (city[0] == 'City'):
+                lista.append(var[key])
+        for elem in lista:
+            if (elem.state_id == self.id):
+                result.append(elem)
+        return (result)
