@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Sets up web servers for the deployment of web_static.
-sudo apt-get update
-sudo apt-get -y install nginx
+sudo apt update -y
+sudo apt install nginx -y
 mkdir -p '/data/web_static/releases/test/'
 mkdir -p '/data/web_static/shared/'
 echo "Hello World!!" > '/data/web_static/releases/test/index.html'
@@ -14,4 +14,4 @@ printf %s "server {
 		index index.html;
 	}
 }" > etc/nginx/sites-enabled/default
-sudo service nginx restart
+sudo systemctl restart nginx
